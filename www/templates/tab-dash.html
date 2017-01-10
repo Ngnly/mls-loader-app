@@ -1,0 +1,37 @@
+<ion-view view-title="Dashboard">
+  <ion-content class="padding">
+    <h2>Welcome to Ionic</h2>
+
+    <ion-list class="card list">
+      <div class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="search" ng-model="q" placeholder="Search" aria-label="filter stops" />
+      </div>
+    </ion-list>
+
+    <div class="list animate-fade-slide-in-right">
+      <ion-item ng-href='#/mls_driver_app/stop/{{item.id}}' ng-repeat="item in routes | filter:q as results" ng-init="$last ? fireEvent() : null" class="item-route item-thumbnail-left">
+
+        <img src='http://www.uidownload.com/files/553/986/399/avatar-face-icon.png'>
+        <h2>Driver {{item.displayName}}</h2>
+        <p> Total Stops: <span>{{item.totalStops}}</span> <br>
+        Start Time: <span>{{item.date}} {{item.startTime}}</span> </p>
+        <p>
+          <span ng-if="item.assignedTruck != 0"><i class="ion ion-document-text assertive"></i></span>
+          <span ng-if="item.carts != 0">{{item.carts}}<i class="ion ion-android-cart"></i></span>
+        </p>
+
+      </ion-item>
+
+      <div class="" ng-repeat="item in routes | filter:q as results" ng-init="$last ? fireEvent() : null" >
+        <div class="card colorful-bg light ink ink-dark">
+          <a class="item  item-text-wrap" ng-href="#/mls_driver_2/stop_singles/{{item.id}}" >
+            <h2  ng-bind-html="item.totalStops | to_trusted"></h2>
+            <p> <span ng-bind-html="item.user_id | to_trusted">{{item.address}}</span>
+              <br><span  ng-bind-html="item.date | to_trusted">{{item.date}}</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
